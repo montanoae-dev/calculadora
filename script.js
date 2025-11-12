@@ -1,5 +1,6 @@
 
 
+
 function sum(n1, n2){
    return n1 + n2;
 }
@@ -14,11 +15,14 @@ function mult( n1, n2){
 function divi(n1, n2){
     return n1 / n2
 }
-const n1 = document.querySelector(".n1")
-const n2 = document.querySelector(".n2")
+let n1 = ""
+const valor2 = ""
 const operador = ""
 const numeros = document.querySelector(".numers");
-
+const display = document.querySelector('.pantalla')
+const operadores = document.querySelector('.oper')
+const dispn1 = document.querySelector('.pn1')
+const disop = document.querySelector('.pop')
 function generateN(){
 for( let i = 0; i < 10; i++){
     const n = document.createElement("div");
@@ -37,8 +41,19 @@ for( let i = 0; i < 10; i++){
     n.textContent = i
     
 }
+numeros.addEventListener('click', (e) =>{
+    const valor1 = e.target.textContent;
+     n1 += valor1;
+    
+    dispn1.textContent = n1    
 
+  console.log(n1)
+    
+})
 }
+
+
+
 generateN()
 
 function operate(n1, op, n2){
@@ -49,3 +64,8 @@ if (op === "+"){
         return n1 - n2;
     }
 }
+
+operadores.addEventListener('click', (e) =>{
+    const opValue = e.target.textContent
+    disop.textContent = opValue
+})
