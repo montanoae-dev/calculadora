@@ -1,0 +1,39 @@
+.container{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+.pantalla{
+    border: 1px solid black;
+    width: 250px;
+    height: 80px;
+    margin-bottom: 20px;
+}
+.numers{
+   /*border: 1px solid black;*/
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.teclado{
+    display: flex;
+    flex-wrap: wrap;
+    
+    width: 375px;
+}
+.oper{    
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 50px;
+   
+}
+.btn{
+    border: 1px solid black;
+    margin: auto;
+    width: 39.5px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    
+}
