@@ -1,12 +1,36 @@
+
+*{
+font-family: "Orbitron", sans-serif;
+  font-optical-sizing: auto;
+  
+}
 .container{
-    margin-left: 50px;
+    margin-left: 30px;
     margin-top: 50px;
+    border: 1px solid black;
+    width: 260px;
+    
+    padding: 10px;
+    background-color: #9c9c9c ;
+    border-radius: 12px;
 }
 .pantalla{
     border: 1px solid black;
     width: 250px;
     height: 80px;
     margin-bottom: 20px;
+    border-radius:  5px;
+    text-align: right;
+    background-color:#D4D4D2 ;
+
+    
+}
+p{
+    margin: 5px;
+    word-wrap: break-word;
+    width: 90%;
+    font-size: 1.2rem;
+    font-size: 3vw;
 }
 .numers{
    /*border: 1px solid black;*/
@@ -14,6 +38,7 @@
     height: 250px;
     display: flex;
     flex-wrap: wrap;
+    
 }
 .teclado{
     display: flex;
@@ -25,15 +50,19 @@
     display: flex;
     flex-wrap: wrap;
     font-size: 50px;
+    
+    
    
 }
 .btn{
-    border: 1px solid black;
+    border: 1px solid #9c9c9c;
+    color: white;
     margin: auto;
     width: 39.5px;
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
     user-select: none;
+    background-color: black;
     
 }
