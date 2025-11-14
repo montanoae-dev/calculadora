@@ -23,6 +23,37 @@ const dispn1 = document.querySelector(".pn1");
 const dispn2 = document.querySelector(".pn2");
 const disop = document.querySelector(".pop");
 function generateN() {
+    const retro = document.createElement('div');
+    retro.style.flex = "1 0 30%";
+    retro.style.border = "1px solid #9c9c9c";
+    retro.style.height = "50px";
+    retro.style.fontSize = "25px";
+    retro.style.cursor = "pointer";
+    retro.style.display = "flex";
+    retro.style.justifyContent = "center";
+    retro.style.alignItems = "center";
+    retro.style.userSelect = "none";
+    retro.style.gap = "50px";
+    retro.style.borderRadius = "5px";
+    retro.style.backgroundColor = "#FFCC00";
+    retro.style.color = "#333333";
+    numeros.appendChild(retro);
+    retro.textContent = "←"
+    const punto = document.createElement("div");
+  punto.textContent = ".";
+  punto.style.flex = "1 0 30%";
+  punto.style.border = "1px solid #9c9c9c";
+  punto.style.height = "50px";
+  punto.style.fontSize = "25px";
+  punto.style.cursor = "pointer";
+  punto.style.display = "flex";
+  punto.style.justifyContent = "center";
+  punto.style.alignItems = "center";
+  punto.style.userSelect = "none";
+  punto.style.borderRadius = "5px";
+  punto.style.backgroundColor = "#FAFAFA";
+  punto.style.color = "#333333";
+  numeros.appendChild(punto)
   for (let i = 0; i < 10; i++) {
     const n = document.createElement("div");
     n.style.flex = "1 0 30%";
@@ -36,13 +67,19 @@ function generateN() {
     n.style.userSelect = "none";
     n.style.gap = "50px";
     n.style.borderRadius = "5px";
-    n.style.backgroundColor = "black";
-    n.style.color = "white";
+    n.style.backgroundColor = "#FAFAFA";
+    n.style.color = "#333333";
+
     numeros.appendChild(n);
     n.textContent = i;
   }
+  
   numeros.addEventListener("click", (e) => {
     const valor = e.target.textContent;
+    if( valor === "."){
+        agregarPunto();
+        return
+    }
     if (!isNaN(valor)) {
       if (operador === "") {
         n1 += valor;
@@ -72,7 +109,20 @@ function operate(operador) {
       break;
   }
 }
-
+function agregarPunto(){
+    if(operador ===""){
+        if(n1 === "" || n1.includes("."))
+            return;
+        n1 += ".";
+        dispn1.textContent = n1;
+    } else{
+        if (n2 === "" || n2.includes(".")) 
+            return;
+            n2 += ".";
+            dispn2.textContent = n2;
+        
+    }
+}
 operadores.addEventListener("click", (e) => {
   const opValue = e.target.textContent;
   if (operador === "/" && Number(n2) === 0) {
@@ -87,7 +137,6 @@ operadores.addEventListener("click", (e) => {
       dispn2.textContent = "";
       n1 = resultado.toString();
       n2 = "";
-      
     }
     operador = opValue;
     disop.textContent = operador;
