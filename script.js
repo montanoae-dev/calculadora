@@ -23,23 +23,23 @@ const dispn1 = document.querySelector(".pn1");
 const dispn2 = document.querySelector(".pn2");
 const disop = document.querySelector(".pop");
 function generateN() {
-    const retro = document.createElement('div');
-    retro.style.flex = "1 0 30%";
-    retro.style.border = "1px solid #9c9c9c";
-    retro.style.height = "50px";
-    retro.style.fontSize = "25px";
-    retro.style.cursor = "pointer";
-    retro.style.display = "flex";
-    retro.style.justifyContent = "center";
-    retro.style.alignItems = "center";
-    retro.style.userSelect = "none";
-    retro.style.gap = "50px";
-    retro.style.borderRadius = "5px";
-    retro.style.backgroundColor = "#FFCC00";
-    retro.style.color = "#333333";
-    numeros.appendChild(retro);
-    retro.textContent = "←"
-    const punto = document.createElement("div");
+  const retro = document.createElement("div");
+  retro.style.flex = "1 0 30%";
+  retro.style.border = "1px solid #9c9c9c";
+  retro.style.height = "50px";
+  retro.style.fontSize = "25px";
+  retro.style.cursor = "pointer";
+  retro.style.display = "flex";
+  retro.style.justifyContent = "center";
+  retro.style.alignItems = "center";
+  retro.style.userSelect = "none";
+  retro.style.gap = "50px";
+  retro.style.borderRadius = "5px";
+  retro.style.backgroundColor = "#FFCC00";
+  retro.style.color = "#333333";
+  numeros.appendChild(retro);
+  retro.textContent = "←";
+  const punto = document.createElement("div");
   punto.textContent = ".";
   punto.style.flex = "1 0 30%";
   punto.style.border = "1px solid #9c9c9c";
@@ -53,7 +53,7 @@ function generateN() {
   punto.style.borderRadius = "5px";
   punto.style.backgroundColor = "#FAFAFA";
   punto.style.color = "#333333";
-  numeros.appendChild(punto)
+  numeros.appendChild(punto);
   for (let i = 0; i < 10; i++) {
     const n = document.createElement("div");
     n.style.flex = "1 0 30%";
@@ -73,12 +73,14 @@ function generateN() {
     numeros.appendChild(n);
     n.textContent = i;
   }
-  
+  retro.addEventListener("click", () => {
+    borrar();
+  });
   numeros.addEventListener("click", (e) => {
     const valor = e.target.textContent;
-    if( valor === "."){
-        agregarPunto();
-        return
+    if (valor === ".") {
+      agregarPunto();
+      return;
     }
     if (!isNaN(valor)) {
       if (operador === "") {
@@ -109,22 +111,33 @@ function operate(operador) {
       break;
   }
 }
-function agregarPunto(){
-    if(operador ===""){
-        if(n1 === "" || n1.includes("."))
-            return;
-        n1 += ".";
-        dispn1.textContent = n1;
-    } else{
-        if (n2 === "" || n2.includes(".")) 
-            return;
-            n2 += ".";
-            dispn2.textContent = n2;
-        
-    }
+function agregarPunto() {
+  if (operador === "") {
+    if (n1 === "" || n1.includes(".")) return;
+    n1 += ".";
+    dispn1.textContent = n1;
+  } else {
+    if (n2 === "" || n2.includes(".")) return;
+    n2 += ".";
+    dispn2.textContent = n2;
+  }
 }
-operadores.addEventListener("click", (e) => {
-  const opValue = e.target.textContent;
+
+function borrar() {
+  if (operador === "") {
+    n1 = n1.slice(0, -1);
+    dispn1.textContent = n1;
+  } else {
+    if (n2 !== "") {
+      n2 = n2.slice(0, -1);
+      dispn2.textContent = n1;
+    } else {
+      operador = "";
+      disop.textContent = "";
+    }
+  }
+}
+function keyOperador(opValue) {
   if (operador === "/" && Number(n2) === 0) {
     alert("No se puede dividir por cero (0)");
     n2 = "";
@@ -159,6 +172,42 @@ operadores.addEventListener("click", (e) => {
     dispn1.textContent = "";
     dispn2.textContent = "";
     disop.textContent = "";
+  }
+}
+operadores.addEventListener("click", (e) => {
+  keyOperador(e.target.textContent);
+});
+
+document.addEventListener("keydown", (e) => {
+  const key = e.key;
+  if (!isNaN(key) || key === ".") {
+    if (key === ".") {
+      agregarPunto();
+    } else if (!isNaN(key)) {
+      if (operador === "") {
+        n1 += key;
+        dispn1.textContent = n1;
+      } else {
+        n2 += key;
+        dispn2.textContent = n2;
+      }
+    }
+  } else if (
+    ["+", "-", "*", "/"].includes(key) ||
+    key === "=" ||
+    key === "Enter"
+  ) {
+    if (key === "Enter") {
+      e.preventDefault();
+      keyOperador("=");
+    } else {
+      keyOperador(key);
+    }
+  } else if (key === "Backspace") {
+    e.preventDefault();
+    borrar();
+  } else if (key === "Escape" || key === "c" || key === "C") {
+    keyOperador("C");
   }
 });
 generateN();
