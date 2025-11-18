@@ -1,6 +1,10 @@
 * {
   font-family: "Orbitron", sans-serif;
   font-optical-sizing: auto;
+  
+}
+body{
+  background-image: url(img/fondo2.jpg);
 }
 .container {
   margin-left: 30px;
@@ -23,10 +27,13 @@
   overflow: hidden;
   color: #000000;
 }
+
 .pantalla p {
   margin: 0;
-  word-wrap: break-word;
-  width: 90%;
+  overflow: hidden;
+  width: 100%;
+  text-align: right;
+  white-space: nowrap;
 }
 .numers {
   /*border: 1px solid black;*/
@@ -66,6 +73,7 @@
   user-select: none;
   background-color: #FFCC00;
   
+  
 }
 .btn:hover {
   background-color: #ccc;
@@ -81,3 +89,34 @@ h1 {
   background-color: #ccc !important;
   transform: scale(1.05);
 }
+ h2{
+  font-size: 12px;
+  text-align: end;
+ }
+ .bodyy{
+ display: flex;
+ gap: 50px;
+ }
+ li{
+  font-size: 25px;
+  color: #333333;
+  margin: 15px;
+  font-weight: 700;
+ }
+ .titulo{
+  text-align: center;
+  font-size: 50px;
+  color: #FFCC00;
+  text-decoration:underline;
+  
+ }
+ .textFun{
+  margin-top: 40px;
+  border-radius: 5px;
+background-color: #ffffff;
+ }
+
+ .textFun h1{
+  color: #333333;
+  text-decoration: underline;
+ }
